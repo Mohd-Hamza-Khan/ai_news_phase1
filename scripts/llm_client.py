@@ -17,7 +17,8 @@ def generate_response(prompt: str) -> str:
 
     validate_openrouter_config()
 
-    url = f"{OPENROUTER_BASE_URL}/chat/completions"
+    base = OPENROUTER_BASE_URL.rstrip("/")
+    url = f"{base}/chat/completions"
     headers = {
         "Authorization": f"Bearer {OPENROUTER_API_KEY}",
         "Content-Type": "application/json",
@@ -45,7 +46,14 @@ def generate_response(prompt: str) -> str:
     )
     response.raise_for_status()
 
-    data = response.json()
+    # Attempt to decode JSON; if the body is empty or not JSON, raise an informative error.
+    try:
+        data = response.json()
+    except Exception as exc:  # includes JSONDecodeError
+        raise RuntimeError(
+            f"OpenRouter response is not valid JSON: {exc}"  # noqa: E501
+        ) from exc
+
     try:
         content = data["choices"][0]["message"]["content"]
     except (KeyError, IndexError, TypeError) as exc:

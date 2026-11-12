@@ -7,7 +7,8 @@ load_dotenv()
 
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "").strip()
 OPENROUTER_MODEL = os.getenv("OPENROUTER_MODEL", "").strip()
-OPENROUTER_BASE_URL = os.getenv("OPENROUTER_BASE_URL", "").strip()
+# Default to the official OpenRouter API base URL if not provided
+OPENROUTER_BASE_URL = os.getenv("OPENROUTER_BASE_URL", "").strip() or "https://openrouter.ai/api/v1"
 
 
 def validate_openrouter_config() -> None:
