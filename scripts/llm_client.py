@@ -17,8 +17,6 @@ def generate_response(prompt: str) -> str:
 
     validate_openrouter_config()
 
-    base = OPENROUTER_BASE_URL.rstrip("/")
-    url = f"{base}/chat/completions"
     headers = {
         "Authorization": f"Bearer {OPENROUTER_API_KEY}",
         "Content-Type": "application/json",
@@ -39,10 +37,10 @@ def generate_response(prompt: str) -> str:
     }
 
     response = requests.post(
-        url,
+        url=OPENROUTER_BASE_URL,
         headers=headers,
         json=payload,
-        timeout=60,
+        timeout=120,
     )
     response.raise_for_status()
 
