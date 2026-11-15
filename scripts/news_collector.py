@@ -44,8 +44,8 @@ def clean_text(raw_text: Optional[str]) -> str:
     """Strip HTML tags, unescape HTML entities, and collapse extra whitespace."""
     if not raw_text:
         return ""
-    # Strip HTML tags
-    cleaned = re.sub(r"<[^>]+>", " ", raw_text)
+    # Strip HTML tags (replace with empty string, not a space)
+    cleaned = re.sub(r"<[^>]+>", "", raw_text)
     # Decode HTML entities (e.g., &amp;, &quot;, &#39;)
     cleaned = html.unescape(cleaned)
     # Normalize whitespace

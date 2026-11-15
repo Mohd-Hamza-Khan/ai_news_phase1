@@ -15,7 +15,7 @@ This repository automates the discovery, verification, summarization, and public
 ### Implementation Phases
 
 - [x] **Phase 1 — Project Foundation & OpenRouter Connection** (Completed & Tested)
-- [ ] **Phase 2 — News Source Registry & Feed Collection**
+- [x] **Phase 2 — News Source Registry & Feed Collection** (Completed & Tested)
 - [ ] **Phase 3 — Cleaning, Verification, Deduplication & Selection**
 - [ ] **Phase 4 — OpenRouter Research Summaries & Structured Validation**
 - [ ] **Phase 5 — README Update & Archive Management (`news.md`)**
